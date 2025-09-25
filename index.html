@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión Clínica - Index Sencillo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Navegación Tabs (para alternar secciones de creación) -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="pacientes">
+                <i class="fas fa-user"></i> Crear Usuario (Paciente)
+            </button>
+            <button class="tab" data-tab="citas">
+                <i class="fas fa-calendar-alt"></i> Crear Cita
+            </button>
+        </nav>
+
+        <!-- Sección de Creación de Usuario (oculta/inicial activa) -->
+        <div class="seccion active" id="pacientes-seccion">
+            <h2><i class="fas fa-user-plus"></i> Crear Nuevo Paciente</h2>
+            <div class="formulario">
+                <input type="text" id="nombre-paciente" placeholder="Nombre completo" required />
+                <input type="text" id="documento-paciente" placeholder="Documento (DNI/CC)" required />
+                <input type="tel" id="telefono-paciente" placeholder="Teléfono" required />
+                <input type="email" id="correo-paciente" placeholder="Correo electrónico" required />
+                <button id="btn-agregar-paciente">
+                    <i class="fas fa-plus"></i> Agregar Paciente
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección de Creación de Cita (oculta inicial) -->
+        <div class="seccion hidden" id="citas-seccion">
+            <h2><i class="fas fa-calendar-plus"></i> Crear Nueva Cita</h2>
+            <div class="formulario">
+                <select id="paciente-cita" required>
+                    <option value="">Seleccione un paciente</option>
+                </select>
+                <input type="date" id="fecha-cita" required />
+                <input type="time" id="hora-cita" required />
+                <input type="text" id="odontologo-cita" placeholder="Nombre del Odontólogo" required />
+                <button id="btn-agregar-cita">
+                    <i class="fas fa-plus"></i> Agendar Cita
+                </button>
+            </div>
+        </div>
+
+        <!-- Sección de Registros (Siempre visible abajo) -->
+        <div class="registros">
+            <h3><i class="fas fa-list"></i> Registros Recientes</h3>
+            
+            <!-- Tabla de Pacientes -->
+            <h4>Pacientes Registrados</h4>
+            <table class="tabla-registros" id="tabla-pacientes">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Documento</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <!-- Tabla de Citas -->
+            <h4>Citas Agendadas</h4>
+            <table class="tabla-registros" id="tabla-citas">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Paciente</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Odontólogo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Edición -->
+    <div id="modal-edicion" class="modal">
+        <div class="modal-contenido">
+            <span class="cerrar-modal" onclick="cerrarModal()">&times;</span>
+            <h3 id="modal-titulo">Editar Registro</h3>
+            <div id="formulario-edicion"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
